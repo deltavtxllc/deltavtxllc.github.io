@@ -34,6 +34,7 @@
       background: var(--bg-main);
       color: var(--text-main);
       line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
     }
 
     a{color:inherit;text-decoration:none}
@@ -41,12 +42,28 @@
 
     .wrap{max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
     .section{padding:92px 0}
-    h1{font-size:var(--h1);line-height:1.08;font-weight:650}
-    h2{font-size:var(--h2);margin-bottom:18px;font-weight:650}
+    @media (max-width: 640px){ :root{--pad:18px} .section{padding:72px 0} }
+
+    h1{font-size:var(--h1);letter-spacing:-.02em;line-height:1.08;font-weight:650}
+    h2{font-size:var(--h2);margin-bottom:18px;font-weight:650;letter-spacing:-.01em}
     h3{font-size:var(--h3);margin-bottom:12px;font-weight:650}
     p{color:var(--text-muted);font-size:var(--p)}
 
-    /* ===== TOP BAR ===== */
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      padding:12px 22px;border-radius:14px;
+      border:1px solid var(--accent);
+      font-weight:650;font-size:14px;white-space:nowrap;
+      background:rgba(20,28,38,.55);
+      transition:transform .15s ease, box-shadow .15s ease;
+    }
+    .btn:hover{transform:translateY(-1px);box-shadow:0 12px 26px rgba(0,0,0,.35)}
+    .btn-primary{
+      background:linear-gradient(180deg,#2f5f9e,#234a7c);
+      border-color:#2f5f9e;
+    }
+
+    /* ===== TOP BAR (logo-only) ===== */
     .topbar{
       position:sticky;top:0;z-index:100;
       background:rgba(14,20,27,.9);
@@ -55,26 +72,25 @@
     }
     .topbar-inner{
       display:flex;align-items:center;justify-content:space-between;
-      padding:18px 0;gap:22px;
+      gap:22px;padding:18px 0;
     }
-    .brand{display:flex;align-items:center;gap:18px}
+    .brand{display:flex;align-items:center;gap:18px;min-width:0}
     .logo-wrap{
       padding:14px 18px;border-radius:28px;
       background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.01));
       border:1px solid rgba(255,255,255,.12);
-      box-shadow:0 18px 40px rgba(0,0,0,.45);
+      box-shadow:0 0 0 1px rgba(255,255,255,.03), 0 18px 40px rgba(0,0,0,.45);
+      flex:0 0 auto;
     }
-    .logo-wrap img{width:112px}
-    .top-tagline{font-size:14px;color:var(--text-muted);max-width:760px}
-    .btn{
-      padding:12px 22px;border-radius:14px;
-      border:1px solid var(--accent);
-      font-weight:650;font-size:14px;
-      background:rgba(20,28,38,.55)
+    .logo-wrap img{width:112px;height:auto;object-fit:contain}
+    .top-tagline{
+      color:var(--text-muted);
+      font-size:14px;line-height:1.35;max-width:780px;
     }
-    .btn-primary{
-      background:linear-gradient(180deg,#2f5f9e,#234a7c);
-      border-color:#2f5f9e
+    @media (max-width: 780px){
+      .top-tagline{display:none}
+      .logo-wrap{padding:12px 14px;border-radius:24px}
+      .logo-wrap img{width:88px}
     }
 
     /* ===== HERO ===== */
@@ -82,180 +98,357 @@
       background:
         radial-gradient(900px 420px at 50% 0%, rgba(47,95,158,.22), transparent 55%),
         linear-gradient(to bottom,var(--bg-main),var(--bg-dark));
-      padding:74px 0 84px;border-bottom:1px solid var(--border);
+      padding:74px 0 84px;
+      border-bottom:1px solid var(--border);
     }
     .def-wide{
       border:1px solid var(--border);
       background:rgba(20,28,38,.6);
-      border-radius:18px;padding:20px 22px;
-      box-shadow:var(--shadow);margin-bottom:26px;
+      border-radius:18px;
+      padding:20px 22px;
+      box-shadow:var(--shadow);
+      margin-bottom:26px;
     }
-    .def-title{font-size:var(--def-title);font-weight:700;margin-bottom:10px}
-    .def-text{font-size:var(--def-text);max-width:1000px}
-
+    .def-wide .def-title{
+      font-size:var(--def-title);
+      font-weight:700;
+      letter-spacing:.02em;
+      color:var(--text-main);
+      margin-bottom:10px;
+    }
+    .def-wide .def-text{
+      font-size:var(--def-text);
+      color:rgba(232,234,237,.85);
+      line-height:1.4;
+      max-width:1000px;
+    }
     .hero-grid{
-      display:grid;grid-template-columns:1.2fr 1fr;
-      gap:40px;align-items:center;
+      display:grid;
+      grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);
+      gap:40px;
+      align-items:center;
+    }
+    @media (max-width: 900px){
+      .hero-grid{grid-template-columns:1fr;gap:22px}
     }
     .hero-media{
-      border-radius:18px;overflow:hidden;
-      border:1px solid var(--border);box-shadow:var(--shadow)
+      border-radius:var(--radius);
+      overflow:hidden;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.03);
+      box-shadow:var(--shadow);
     }
-    .hero-copy{max-width:520px}
-    .hero-actions{margin-top:22px;display:flex;gap:12px;flex-wrap:wrap}
+    .hero-media img{width:100%;height:auto;object-fit:cover}
+    .hero-copy{
+      display:flex;flex-direction:column;
+      align-items:flex-start;justify-content:center;
+      max-width:520px;
+    }
+    .hero-copy h1{
+      margin:0 0 12px;
+      line-height:1.05;
+      letter-spacing:-.02em;
+    }
+    .hero-copy p{margin-top:10px;max-width:720px}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
 
     /* ===== PRINCIPLES ===== */
-    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:26px}
+    .grid-3{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:20px;
+      margin-top:26px;
+    }
+    @media (max-width: 900px){ .grid-3{grid-template-columns:1fr} }
     .card{
       background:rgba(20,28,38,.9);
       border:1px solid var(--border);
-      border-radius:18px;padding:26px;
-      box-shadow:var(--shadow)
+      border-radius:var(--radius);
+      padding:26px;
+      box-shadow:var(--shadow);
+    }
+    .card p{
+      color:rgba(176,182,189,.95);
+      font-size:15px;
+      line-height:1.55;
     }
 
-    /* ===== TABLE ===== */
+    /* ===== COMPARISON TABLE (embedded feel, no extra text) ===== */
+    .center{text-align:center}
     .embed{
-      margin-top:26px;border:1px solid var(--border);
-      border-radius:18px;background:rgba(255,255,255,.02);
-      box-shadow:var(--shadow);padding:18px;
+      margin-top:26px;
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      background:rgba(255,255,255,.02);
+      box-shadow:var(--shadow);
+      padding:18px;
     }
     .table-wrap{
-      border-radius:14px;border:1px solid rgba(255,255,255,.10);
-      background:rgba(255,255,255,.01);padding:12px;
-      overflow-x:auto
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.01);
+      padding:12px;
+      overflow-x:auto;
+      -webkit-overflow-scrolling:touch;
     }
-    .table-wrap img{min-width:820px;border-radius:10px}
-    .swipe-hint{margin-top:10px;font-size:13px;color:var(--text-muted)}
+    .table-wrap img{
+      min-width:820px;
+      background:#fff;
+      border-radius:10px;
+      display:block;
+    }
 
-    /* ===== CRITERIA ===== */
+    /* ===== INVESTMENT CRITERIA (3 buckets + dots) ===== */
     .criteria-card{
-      margin-top:22px;background:rgba(20,28,38,.9);
+      margin-top:22px;
+      background:rgba(20,28,38,.9);
       border:1px solid var(--border);
-      border-radius:18px;padding:26px;
-      box-shadow:var(--shadow)
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:26px;
     }
     .criteria-buckets{
-      display:grid;grid-template-columns:repeat(3,1fr);gap:16px
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:16px;
     }
+    @media (max-width: 980px){ .criteria-buckets{grid-template-columns:1fr} }
     .bucket{
       border:1px solid rgba(255,255,255,.10);
       background:rgba(255,255,255,.02);
-      border-radius:14px;padding:18px
+      border-radius:14px;
+      padding:18px 18px 16px;
     }
     .bucket-title{
-      font-size:12px;letter-spacing:.14em;
-      text-transform:uppercase;margin-bottom:10px
+      font-size:12px;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      color:rgba(232,234,237,.90);
+      margin-bottom:10px;
+      display:flex;
+      align-items:center;
+      gap:10px;
     }
-    .bucket ul{padding-left:18px}
-    .bucket li{margin:8px 0;font-size:15px}
+    .bucket-title:before{
+      content:"";
+      width:10px;
+      height:10px;
+      border-radius:999px;
+      background:rgba(47,95,158,.9);
+      box-shadow:0 0 0 3px rgba(47,95,158,.18);
+      flex:0 0 auto;
+    }
+    .bucket ul{
+      margin:0;
+      padding-left:18px;
+      color:rgba(232,234,237,.90);
+    }
+    .bucket li{
+      font-size:15px;
+      line-height:1.5;
+      margin:8px 0;
+    }
 
-    /* ===== CONTACT ===== */
-    .stack{text-align:center;max-width:860px;margin:0 auto}
+    /* ===== CONTACT (fix overlap) ===== */
+    .contact{
+      background:linear-gradient(to bottom,var(--bg-main),var(--bg-dark));
+      border-top:1px solid var(--border);
+    }
+    .stack{
+      max-width:860px;
+      margin:0 auto;
+      text-align:center;
+    }
+    .contact .stack p{
+      margin: 0 auto 22px; /* ensures space before button */
+      max-width: 900px;
+    }
+    .contact-actions{
+      display:flex;
+      justify-content:center;
+      padding-top: 6px;
+    }
+    .contact-actions .btn{
+      margin-top: 0; /* explicit */
+    }
+
     footer{
-      text-align:center;padding:34px;
-      font-size:13px;color:var(--text-muted);
-      border-top:1px solid var(--border)
+      text-align:center;
+      padding:34px 24px;
+      font-size:13px;
+      color:var(--text-muted);
+      border-top:1px solid var(--border);
+      background:var(--bg-dark);
     }
   </style>
 </head>
 
 <body>
 
-<div class="topbar">
-  <div class="wrap topbar-inner">
-    <div class="brand">
-      <div class="logo-wrap"><img src="assets/logo.png" alt="Delta V"></div>
-      <div class="top-tagline">
-        Boosting companies into their next trajectory — with respect for your legacy,
-        your people, and long-term growth.
+  <!-- TOP BAR (logo-only) -->
+  <div class="topbar">
+    <div class="wrap topbar-inner">
+      <div class="brand">
+        <div class="logo-wrap">
+          <img src="assets/logo.png" alt="Delta V logo">
+        </div>
+        <div class="top-tagline">
+          Boosting companies into their next trajectory — with respect for your legacy,
+          your people, and long-term growth.
+        </div>
       </div>
+      <a class="btn" href="mailto:hello@deltav.com">Email us</a>
     </div>
-    <a class="btn" href="mailto:hello@deltav.com">Email us</a>
   </div>
-</div>
 
-<section class="hero">
-  <div class="wrap">
-    <div class="def-wide">
-      <div class="def-title">Delta-v (Δv)</div>
-      <div class="def-text">
-        The change in velocity required for a spacecraft to alter its trajectory—used to maneuver,
-        adjust orbit, or reach its next destination.
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+
+      <div class="def-wide">
+        <div class="def-title">Delta-v (Δv)</div>
+        <div class="def-text">
+          The change in velocity required for a spacecraft to alter its trajectory—used to maneuver,
+          adjust orbit, or reach its next destination.
+        </div>
+      </div>
+
+      <div class="hero-grid">
+        <div class="hero-media">
+          <img src="assets/hero-orbit.png" alt="Spacecraft boosting into orbit">
+        </div>
+
+        <div class="hero-copy">
+          <h1>Measured growth. Long-term stewardship.<br>A clear next orbit.</h1>
+
+          <p>
+            At Delta V, we care about your legacy. We partner with business owners to apply disciplined capital
+            and measured growth strategies—helping you boost into your next orbit without sacrificing your
+            people, culture, or identity.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="mailto:hello@deltav.com">Start a confidential conversation</a>
+            <a class="btn" href="mailto:hello@deltav.com?subject=Confidential%20conversation%20with%20Delta%20V&body=Hi%20Delta%20V%2C%0A%0AI%E2%80%99m%20interested%20in%20a%20confidential%20conversation%20about%20a%20potential%20sale.%20%0A%0AName%3A%0ACompany%3A%0ALocation%3A%0ARevenue%3A%0ACash%20Flow%3A%0A%0AThanks%2C">
+              Email template
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PRINCIPLES (original full text) -->
+  <section class="section">
+    <div class="wrap">
+      <h2>Our Principles</h2>
+
+      <div class="grid-3">
+        <div class="card">
+          <h3>Respect for What You’ve Built</h3>
+          <p>
+            We respect what you’ve built. We are committed to preserving your company’s name, identity, and long-term vision—while applying the capital and operational discipline needed to unlock the next phase of growth.
+          </p>
+          <p style="margin-top:12px;">
+            Backed by experienced operators and advisors, we build on your legacy rather than rewrite it.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Built on People</h3>
+          <p>
+            Your people are the foundation of the business. We prioritize continuity of your team and culture, recognizing that long-term success depends on retaining the talent and trust already in place.
+          </p>
+          <p style="margin-top:12px;">
+            Our focus is growth through execution—not cost cutting at the expense of employees.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Ownership with Horizon</h3>
+          <p>
+            We are not a short-term financial buyer. We take a long-term ownership approach, investing with patience and purpose.
+          </p>
+          <p style="margin-top:12px;">
+            By bringing fresh energy, aligned capital, and hands-on leadership, we partner with you to shape the company’s next chapter.
+          </p>
+        </div>
       </div>
     </div>
+  </section>
 
-    <div class="hero-grid">
-      <div class="hero-media">
-        <img src="assets/hero-orbit.png" alt="Spacecraft boosting into orbit">
+  <!-- COMPARISON (embedded feel, no extra text) -->
+  <section class="section">
+    <div class="wrap">
+      <h2 class="center">A Different Ownership Approach</h2>
+      <p class="center">Entrepreneurs and operators—not private equity or strategic buyers.</p>
+
+      <div class="embed" aria-label="Ownership comparison table">
+        <div class="table-wrap">
+          <img src="assets/ownership-comparison.png" alt="Ownership comparison table">
+        </div>
       </div>
-      <div class="hero-copy">
-        <h1>Measured growth. Long-term stewardship.<br>A clear next orbit.</h1>
+    </div>
+  </section>
+
+  <!-- CRITERIA (3 buckets + dots, no intro text) -->
+  <section class="section">
+    <div class="wrap">
+      <h2>Investment Criteria</h2>
+
+      <div class="criteria-card">
+        <div class="criteria-buckets">
+          <div class="bucket">
+            <div class="bucket-title">Financial Profile</div>
+            <ul>
+              <li>$5M+ revenue</li>
+              <li>$750K+ annual cash flow</li>
+              <li>Stable margins and consistent cash flow</li>
+            </ul>
+          </div>
+
+          <div class="bucket">
+            <div class="bucket-title">Business Quality</div>
+            <ul>
+              <li>Recurring or repeat revenue</li>
+              <li>Growing, resilient end markets</li>
+              <li>Durable customer demand</li>
+            </ul>
+          </div>
+
+          <div class="bucket">
+            <div class="bucket-title">People &amp; Fit</div>
+            <ul>
+              <li>Houston-area based</li>
+              <li>Strong culture and middle management</li>
+              <li>Stable operations with continuity</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT (overlap fixed) -->
+  <section class="section contact">
+    <div class="wrap">
+      <div class="stack">
+        <h2>Contact</h2>
         <p>
-          At Delta V, we care about your legacy. We apply disciplined capital and measured
-          growth strategies—without sacrificing your people, culture, or identity.
+          If you are considering selling your business, we would be honored to begin a discussion.
+          Let’s explore the possibilities together and ensure your legacy continues to thrive.
         </p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="mailto:hello@deltav.com">Start a confidential conversation</a>
+        <div class="contact-actions">
+          <a class="btn btn-primary" href="mailto:hello@deltav.com">Email us</a>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="section">
-  <div class="wrap">
-    <h2>Our Principles</h2>
-    <div class="grid-3">
-      <div class="card"><h3>Respect for What You’ve Built</h3><p>We preserve your company’s name, identity, and long-term vision while unlocking the next phase of growth.</p></div>
-      <div class="card"><h3>Built on People</h3><p>We prioritize continuity of your team and culture. Growth comes from execution—not cost cutting.</p></div>
-      <div class="card"><h3>Ownership with Horizon</h3><p>We invest with patience and purpose, partnering with you to shape the next chapter.</p></div>
-    </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="wrap">
-    <h2 style="text-align:center">A Different Ownership Approach</h2>
-    <div class="embed">
-      <div class="table-wrap">
-        <img src="assets/ownership-comparison.png" alt="Ownership comparison table">
-      </div>
-      <div class="swipe-hint">On mobile, swipe horizontally to view the full table.</div>
-    </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="wrap">
-    <h2>Investment Criteria</h2>
-    <div class="criteria-card">
-      <div class="criteria-buckets">
-        <div class="bucket">
-          <div class="bucket-title">Financial Profile</div>
-          <ul><li>$5M+ revenue</li><li>$750K+ annual cash flow</li><li>Stable margins</li></ul>
-        </div>
-        <div class="bucket">
-          <div class="bucket-title">Business Quality</div>
-          <ul><li>Recurring revenue</li><li>Growing industry</li><li>Durable demand</li></ul>
-        </div>
-        <div class="bucket">
-          <div class="bucket-title">People & Fit</div>
-          <ul><li>Houston-area based</li><li>Strong middle management</li><li>Culture-first</li></ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="wrap stack">
-    <h2>Contact</h2>
-    <p>If you are considering selling your business, we would be honored to begin a discussion.</p>
-    <a class="btn btn-primary" href="mailto:hello@deltav.com">Email us</a>
-  </div>
-</section>
-
-<footer>© Delta V. All rights reserved.</footer>
+  <footer>
+    © Delta V. All rights reserved.
+  </footer>
 
 </body>
 </html>
