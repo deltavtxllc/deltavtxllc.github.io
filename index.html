@@ -75,22 +75,31 @@
       gap:22px;padding:18px 0;
     }
     .brand{display:flex;align-items:center;gap:18px;min-width:0}
+
+    /* Transparent-logo-ready: no badge background, soft edges, subtle shadow */
     .logo-wrap{
-      padding:14px 18px;border-radius:28px;
-      background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.01));
-      border:1px solid rgba(255,255,255,.12);
-      box-shadow:0 0 0 1px rgba(255,255,255,.03), 0 18px 40px rgba(0,0,0,.45);
+      padding:6px;
+      border-radius:18px;
+      background:none;
+      border:none;
+      box-shadow:none;
       flex:0 0 auto;
     }
-    .logo-wrap img{width:112px;height:auto;object-fit:contain}
+    .logo-wrap img{
+      width:120px;
+      height:auto;
+      object-fit:contain;
+      /* helps transparent logos separate from dark background */
+      filter: drop-shadow(0 6px 14px rgba(0,0,0,.45));
+    }
+
     .top-tagline{
       color:var(--text-muted);
       font-size:14px;line-height:1.35;max-width:780px;
     }
     @media (max-width: 780px){
       .top-tagline{display:none}
-      .logo-wrap{padding:12px 14px;border-radius:24px}
-      .logo-wrap img{width:88px}
+      .logo-wrap img{width:92px}
     }
 
     /* ===== HERO ===== */
@@ -249,7 +258,7 @@
       margin:8px 0;
     }
 
-    /* ===== CONTACT (fix overlap) ===== */
+    /* ===== CONTACT (overlap fixed) ===== */
     .contact{
       background:linear-gradient(to bottom,var(--bg-main),var(--bg-dark));
       border-top:1px solid var(--border);
@@ -260,16 +269,13 @@
       text-align:center;
     }
     .contact .stack p{
-      margin: 0 auto 22px; /* ensures space before button */
+      margin: 0 auto 22px;
       max-width: 900px;
     }
     .contact-actions{
       display:flex;
       justify-content:center;
       padding-top: 6px;
-    }
-    .contact-actions .btn{
-      margin-top: 0; /* explicit */
     }
 
     footer{
@@ -327,11 +333,9 @@
             people, culture, or identity.
           </p>
 
+          <!-- Email template button removed -->
           <div class="hero-actions">
             <a class="btn btn-primary" href="mailto:hello@deltav.com">Start a confidential conversation</a>
-            <a class="btn" href="mailto:hello@deltav.com?subject=Confidential%20conversation%20with%20Delta%20V&body=Hi%20Delta%20V%2C%0A%0AI%E2%80%99m%20interested%20in%20a%20confidential%20conversation%20about%20a%20potential%20sale.%20%0A%0AName%3A%0ACompany%3A%0ALocation%3A%0ARevenue%3A%0ACash%20Flow%3A%0A%0AThanks%2C">
-              Email template
-            </a>
           </div>
         </div>
       </div>
