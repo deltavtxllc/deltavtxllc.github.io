@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Delta V</title>
+
+  <style>
+    :root {
+      --bg-main: #0e141b;
+      --bg-dark: #0a0f14;
+      --card-bg: #141c26;
+      --text-main: #e8eaed;
+      --text-muted: #b0b6bd;
+      --accent: #2f5f9e;
+      --border-subtle: rgba(255, 255, 255, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
+      background: var(--bg-main);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    h1, h2, h3 {
+      font-weight: 500;
+      letter-spacing: 0.2px;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      font-size: 28px;
+    }
+
+    p {
+      color: var(--text-muted);
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 90px 24px;
+    }
+
+    /* =====================
+       TOP BAR
+    ====================== */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(14, 20, 27, 0.9);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .topbar-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand img {
+      width: 42px;
+      height: auto;
+    }
+
+    .brand-text strong {
+      display: block;
+      font-size: 18px;
+      letter-spacing: 0.4px;
+    }
+
+    .brand-text span {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .topbar-cta {
+      padding: 10px 18px;
+      border: 1px solid var(--accent);
+      border-radius: 4px;
+      font-size: 14px;
+      white-space: nowrap;
+    }
+
+    /* =====================
+       HERO
+    ====================== */
+    .hero {
+      background: linear-gradient(to bottom, var(--bg-main), var(--bg-dark));
+      text-align: center;
+      padding: 130px 24px 110px;
+    }
+
+    .hero-definition {
+      max-width: 880px;
+      margin: 0 auto 16px;
+      font-size: 15px;
+      color: var(--text-muted);
+    }
+
+    .hero h1 {
+      font-size: 40px;
+      max-width: 820px;
+      margin: 10px auto 20px;
+    }
+
+    .hero-sub {
+      font-size: 18px;
+      max-width: 720px;
+      margin: 0 auto 36px;
+    }
+
+    .hero a {
+      display: inline-block;
+      padding: 14px 30px;
+      background: var(--accent);
+      border-radius: 4px;
+      font-weight: 500;
+    }
+
+    /* =====================
+       PRINCIPLES
+    ====================== */
+    .principles {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 32px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+      padding: 30px;
+    }
+
+    .card h3 {
+      margin-bottom: 14px;
+      font-size: 18px;
+      color: var(--text-main);
+    }
+
+    .card p {
+      font-size: 15px;
+    }
+
+    /* =====================
+       COMPARISON
+    ====================== */
+    .comparison {
+      text-align: center;
+    }
+
+    .comparison img {
+      width: 100%;
+      max-width: 1000px;
+      margin-top: 40px;
+      border-radius: 6px;
+      background: #ffffff;
+    }
+
+    /* =====================
+       CRITERIA
+    ====================== */
+    .criteria-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+      margin-top: 30px;
+    }
+
+    .criteria-item {
+      padding: 16px 18px;
+      background: var(--card-bg);
+      border: 1px solid var(--border-subtle);
+      border-radius: 4px;
+      font-size: 15px;
+    }
+
+    /* =====================
+       PROCESS
+    ====================== */
+    .process {
+      text-align: center;
+    }
+
+    .process em {
+      display: block;
+      margin-bottom: 20px;
+      color: var(--text-muted);
+    }
+
+    .process p {
+      max-width: 760px;
+      margin: 0 auto 22px;
+    }
+
+    /* =====================
+       CONTACT
+    ====================== */
+    .contact {
+      text-align: center;
+      background: var(--bg-dark);
+    }
+
+    .contact p {
+      font-size: 18px;
+      max-width: 760px;
+      margin: 0 auto 36px;
+    }
+
+    .contact a {
+      padding: 14px 34px;
+      background: var(--accent);
+      border-radius: 4px;
+      font-weight: 500;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 24px;
+      font-size: 13px;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border-subtle);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <img src="assets/logo.png" alt="Delta V logo" />
+        <div class="brand-text">
+          <strong>Delta V</strong>
+          <span>Committed to your legacy, your people, and long-term growth.</span>
+        </div>
+      </div>
+      <a class="topbar-cta" href="mailto:hello@deltav.com">Email us</a>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-definition">
+      <strong>Delta-v (Δv)</strong><br />
+      The change in velocity required for a spacecraft to alter its trajectory—used to maneuver,
+      adjust orbit, or reach its next destination.
+    </div>
+
+    <h1>Boosting companies into their next trajectory.</h1>
+
+    <p class="hero-sub">
+      Long-term capital and hands-on leadership for businesses entering their next phase of growth.
+    </p>
+
+    <a href="mailto:hello@deltav.com">Start a confidential conversation</a>
+  </section>
+
+  <!-- PRINCIPLES -->
+  <section class="container">
+    <div class="principles">
+      <div class="card">
+        <h3>Respect for What You’ve Built</h3>
+        <p>
+          We respect what you’ve built. We are committed to preserving your company’s name,
+          identity, and long-term vision—while applying the capital and operational discipline
+          needed to unlock the next phase of growth.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Built on People</h3>
+        <p>
+          Your people are the foundation of the business. We prioritize continuity of your team
+          and culture, recognizing that long-term success depends on retaining the talent and
+          trust already in place.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Ownership with Horizon</h3>
+        <p>
+          We are not a short-term financial buyer. We take a long-term ownership approach,
+          investing with patience and purpose to shape the company’s next chapter.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPARISON -->
+  <section class="container comparison">
+    <h2>A Different Ownership Approach</h2>
+    <p>
+      We are entrepreneurs and operators—not a traditional private equity or strategic buyer.
+    </p>
+    <img src="assets/ownership-comparison.png" alt="Ownership comparison table" />
+  </section>
+
+  <!-- CRITERIA -->
+  <section class="container">
+    <h2>Investment Criteria</h2>
+    <div class="criteria-list">
+      <div class="criteria-item">$5M+ Revenue</div>
+      <div class="criteria-item">$750K+ Annual Cash Flow</div>
+      <div class="criteria-item">Growing, durable industries</div>
+      <div class="criteria-item">Houston-area based</div>
+      <div class="criteria-item">Strong culture and middle management</div>
+      <div class="criteria-item">Recurring or repeat revenue</div>
+      <div class="criteria-item">Stable margins and consistent cash flow</div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="container process">
+    <h2>Our Process</h2>
+    <em>Efficient. Equitable. Professional.</em>
+    <p>
+      We understand that selling your business is one of the most important decisions you will
+      make. Achieving an attractive outcome, maintaining flexibility in structure, and ensuring
+      your employees are in good hands all matter.
+    </p>
+    <p>
+      From the start, you will know exactly who you are partnering with and who will help lead
+      the company forward.
+    </p>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="container contact">
+    <h2>Contact</h2>
+    <p>
+      If you are considering selling your business, we would be honored to begin a discussion.
+      Let’s explore the possibilities together and ensure that your legacy continues to thrive.
+    </p>
+    <a href="mailto:hello@deltav.com">Email us</a>
+  </section>
+
+  <footer>
+    © Delta V. All rights reserved.
+  </footer>
+
+</body>
+</html>
