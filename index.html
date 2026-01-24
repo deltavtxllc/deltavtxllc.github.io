@@ -25,7 +25,6 @@
       --h3: 18px;
       --p:  clamp(16px, 1.2vw, 18px);
 
-      /* Delta-v definition sizing */
       --def-title: clamp(18px, 1.8vw, 22px);
       --def-text: clamp(16px, 1.6vw, 20px);
     }
@@ -85,7 +84,6 @@
       min-width:0;
     }
 
-    /* Logo-only top bar treatment (soft edges, less square) */
     .logo-wrap{
       padding:14px 18px;
       border-radius:28px;
@@ -101,7 +99,6 @@
       object-fit:contain;
     }
 
-    /* Tagline remains, but no "Delta V" text */
     .top-tagline{
       color: var(--text-muted);
       font-size: 14px;
@@ -134,12 +131,12 @@
     }
 
     @media (max-width: 780px){
-      .top-tagline{ display:none; } /* keep the top bar clean on mobile */
+      .top-tagline{ display:none; }
       .logo-wrap{ padding:12px 14px; border-radius:24px; }
       .logo-wrap img{ width:88px; }
     }
 
-    /* ===== HERO (UPDATED) ===== */
+    /* ===== HERO ===== */
     .hero{
       background:
         radial-gradient(900px 420px at 50% 0%, rgba(47,95,158,.22), transparent 55%),
@@ -148,7 +145,6 @@
       border-bottom:1px solid var(--border);
     }
 
-    /* Full-width definition block */
     .def-wide{
       border:1px solid var(--border);
       background: rgba(20,28,38,.6);
@@ -173,7 +169,6 @@
       max-width: 1000px;
     }
 
-    /* Image + tagline row */
     .hero-grid{
       display:grid;
       grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
@@ -254,13 +249,45 @@
       line-height: 1.55;
     }
 
-    /* ===== COMPARISON ===== */
+    /* ===== COMPARISON (embedded feel) ===== */
     .center{text-align:center}
+
+    .embed{
+      margin-top: 26px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.02);
+      box-shadow: var(--shadow);
+      padding: 18px;
+      text-align: left; /* label + text read better left-aligned */
+    }
+
+    .embed-label{
+      display:inline-block;
+      font-size: 12px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: rgba(176,182,189,.9);
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(20,28,38,.45);
+      padding: 8px 10px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+    }
+
+    .embed-desc{
+      color: var(--text-muted);
+      font-size: 15px;
+      line-height: 1.5;
+      margin-bottom: 14px;
+      max-width: 920px;
+    }
+
     .table-wrap{
-      margin-top:30px;
-      padding:14px;
-      border:1px solid var(--border);
-      border-radius:var(--radius);
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.01);
+      padding: 12px;
       overflow-x:auto;
       -webkit-overflow-scrolling: touch;
     }
@@ -268,26 +295,53 @@
     .table-wrap img{
       min-width:820px;
       background:#fff;
-      border-radius:8px;
+      border-radius:10px;
+      display:block;
     }
 
-    /* ===== CRITERIA ===== */
-    .criteria{
+    .swipe-hint{
+      margin-top: 10px;
+      font-size: 13px;
+      color: rgba(176,182,189,.9);
+    }
+
+    /* ===== INVESTMENT CRITERIA (cleaned up) ===== */
+    .criteria-card{
+      margin-top: 22px;
+      background: rgba(20,28,38,.9);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 26px;
+    }
+
+    .criteria-intro{
+      color: var(--text-muted);
+      max-width: 900px;
+      margin-bottom: 18px;
+      font-size: 16px;
+      line-height: 1.55;
+    }
+
+    .criteria-list{
       display:grid;
-      grid-template-columns:repeat(2,1fr);
-      gap:12px;
-      margin-top:22px;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px 22px;
+      padding-left: 18px;
+      margin: 0;
+      color: rgba(232,234,237,.90);
     }
 
-    @media (max-width:700px){
-      .criteria{ grid-template-columns:1fr; }
+    .criteria-list li{
+      font-size: 15px;
+      line-height: 1.45;
+      margin-left: 2px;
     }
 
-    .pill{
-      padding:14px 16px;
-      background:rgba(20,28,38,.85);
-      border:1px solid var(--border);
-      border-radius:12px;
+    @media (max-width: 780px){
+      .criteria-list{
+        grid-template-columns: 1fr;
+      }
     }
 
     /* ===== CONTACT ===== */
@@ -331,7 +385,6 @@
   <section class="hero">
     <div class="wrap">
 
-      <!-- Full-width, larger Delta-v definition -->
       <div class="def-wide">
         <div class="def-title">Delta-v (Δv)</div>
         <div class="def-text">
@@ -366,7 +419,7 @@
     </div>
   </section>
 
-  <!-- PRINCIPLES (original language restored) -->
+  <!-- PRINCIPLES (original language) -->
   <section class="section">
     <div class="wrap">
       <h2>Our Principles</h2>
@@ -410,29 +463,46 @@
     </div>
   </section>
 
-  <!-- COMPARISON -->
+  <!-- COMPARISON (embedded feel + label) -->
   <section class="section">
-    <div class="wrap center">
-      <h2>A Different Ownership Approach</h2>
-      <p>Entrepreneurs and operators—not private equity or strategic buyers.</p>
-      <div class="table-wrap">
-        <img src="assets/ownership-comparison.png" alt="Ownership comparison table">
+    <div class="wrap">
+      <h2 class="center">A Different Ownership Approach</h2>
+      <p class="center">Entrepreneurs and operators—not private equity or strategic buyers.</p>
+
+      <div class="embed" aria-label="Ownership comparison">
+        <div class="embed-label">How we compare</div>
+        <div class="embed-desc">
+          This framework highlights the difference between long-term operator ownership and traditional financial buyers.
+        </div>
+
+        <div class="table-wrap">
+          <img src="assets/ownership-comparison.png" alt="Ownership comparison table">
+        </div>
+
+        <div class="swipe-hint">On mobile, swipe horizontally to view the full table.</div>
       </div>
     </div>
   </section>
 
-  <!-- CRITERIA -->
+  <!-- CRITERIA (cleaned up) -->
   <section class="section">
     <div class="wrap">
       <h2>Investment Criteria</h2>
-      <div class="criteria">
-        <div class="pill">$5M+ Revenue</div>
-        <div class="pill">$750K+ Annual Cash Flow</div>
-        <div class="pill">Growing industries</div>
-        <div class="pill">Houston-area based</div>
-        <div class="pill">Strong culture & middle management</div>
-        <div class="pill">Recurring or repeat revenue</div>
-        <div class="pill">Stable margins and cash flow</div>
+
+      <div class="criteria-card">
+        <div class="criteria-intro">
+          We focus on high-quality businesses with durable demand, strong teams, and consistent cash flow—primarily in the Houston area.
+        </div>
+
+        <ul class="criteria-list">
+          <li>$5M+ revenue</li>
+          <li>$750K+ annual cash flow</li>
+          <li>Growing, resilient end markets</li>
+          <li>Houston-area based</li>
+          <li>Strong culture and middle management</li>
+          <li>Recurring or repeat revenue</li>
+          <li>Stable margins and consistent cash flow</li>
+        </ul>
       </div>
     </div>
   </section>
