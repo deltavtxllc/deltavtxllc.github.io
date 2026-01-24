@@ -78,29 +78,34 @@
 
     /* Transparent-logo-ready: no badge background, soft edges, subtle shadow */
     .logo-wrap{
-      padding:6px;
-      border-radius:18px;
-      background:none;
-      border:none;
-      box-shadow:none;
-      flex:0 0 auto;
-    }
-    .logo-wrap img{
-      width:190px;
-      height:auto;
-      object-fit:contain;
-      /* helps transparent logos separate from dark background */
-      filter: drop-shadow(0 6px 14px rgba(0,0,0,.45));
-    }
+  padding:8px;
+  border-radius:18px;
+  background:none;
+  border:none;
+  box-shadow:none;
+
+  /* THIS is the key fix */
+  width:220px;              /* controls how big the logo can be */
+  display:flex;
+  align-items:center;
+}
+
+.logo-wrap img{
+  width:100%;
+  height:auto;
+  object-fit:contain;
+  filter: drop-shadow(0 6px 14px rgba(0,0,0,.45));
+}
 
     .top-tagline{
       color:var(--text-muted);
       font-size:14px;line-height:1.35;max-width:780px;
     }
-    @media (max-width: 780px){
-      .top-tagline{display:none}
-      .logo-wrap img{width:120px}
-    }
+   @media (max-width: 780px){
+  .logo-wrap{
+    width:150px;
+  }
+}
 
     /* ===== HERO ===== */
     .hero{
