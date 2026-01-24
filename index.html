@@ -72,30 +72,26 @@
     }
     .topbar-inner{
       display:flex;align-items:center;justify-content:space-between;
-      gap:22px;padding:18px 0;
+      gap:22px;padding:12px 0;
     }
     .brand{display:flex;align-items:center;gap:18px;min-width:0}
 
     /* Transparent-logo-ready: no badge background, soft edges, subtle shadow */
-    .logo-wrap{
-  padding:8px;
-  border-radius:18px;
-  background:none;
-  border:none;
-  box-shadow:none;
-
-  /* THIS is the key fix */
-  width:220px;              /* controls how big the logo can be */
+   .logo-wrap{
+  padding: 0;              /* key: no padding ballooning the bar */
+  line-height: 0;          /* removes extra inline spacing */
   display:flex;
   align-items:center;
 }
 
 .logo-wrap img{
-  width:100%;
-  height:auto;
-  object-fit:contain;
+  height: 80px;            /* THIS controls size cleanly */
+  width: auto;
+  max-width: none;         /* prevents max-width:100% from limiting */
+  object-fit: contain;
   filter: drop-shadow(0 6px 14px rgba(0,0,0,.45));
 }
+
 
     .top-tagline{
       color:var(--text-muted);
@@ -103,7 +99,7 @@
     }
    @media (max-width: 780px){
   .logo-wrap{
-    width:150px;
+    width:54px;
   }
 }
 
