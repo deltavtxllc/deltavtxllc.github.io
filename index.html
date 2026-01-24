@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+\<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -259,7 +259,7 @@
       background: rgba(255,255,255,.02);
       box-shadow: var(--shadow);
       padding: 18px;
-      text-align: left; /* label + text read better left-aligned */
+      text-align: left;
     }
 
     .embed-label{
@@ -305,7 +305,7 @@
       color: rgba(176,182,189,.9);
     }
 
-    /* ===== INVESTMENT CRITERIA (cleaned up) ===== */
+    /* ===== INVESTMENT CRITERIA (3 buckets) ===== */
     .criteria-card{
       margin-top: 22px;
       background: rgba(20,28,38,.9);
@@ -323,25 +323,54 @@
       line-height: 1.55;
     }
 
-    .criteria-list{
+    .criteria-buckets{
       display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px 22px;
-      padding-left: 18px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    @media (max-width: 980px){
+      .criteria-buckets{ grid-template-columns: 1fr; }
+    }
+
+    .bucket{
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.02);
+      border-radius: 14px;
+      padding: 18px 18px 16px;
+    }
+
+    .bucket-title{
+      font-size: 12px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: rgba(232,234,237,.85);
+      margin-bottom: 10px;
+      display:flex;
+      align-items:center;
+      gap: 10px;
+    }
+
+    .bucket-title:before{
+      content:"";
+      width:10px;
+      height:10px;
+      border-radius:999px;
+      background: rgba(47,95,158,.9);
+      box-shadow: 0 0 0 3px rgba(47,95,158,.18);
+      flex: 0 0 auto;
+    }
+
+    .bucket ul{
       margin: 0;
+      padding-left: 18px;
       color: rgba(232,234,237,.90);
     }
 
-    .criteria-list li{
+    .bucket li{
       font-size: 15px;
-      line-height: 1.45;
-      margin-left: 2px;
-    }
-
-    @media (max-width: 780px){
-      .criteria-list{
-        grid-template-columns: 1fr;
-      }
+      line-height: 1.5;
+      margin: 8px 0;
     }
 
     /* ===== CONTACT ===== */
@@ -484,25 +513,44 @@
     </div>
   </section>
 
-  <!-- CRITERIA (cleaned up) -->
+  <!-- CRITERIA (3-bucket option) -->
   <section class="section">
     <div class="wrap">
       <h2>Investment Criteria</h2>
 
       <div class="criteria-card">
         <div class="criteria-intro">
-          We focus on high-quality businesses with durable demand, strong teams, and consistent cash flow—primarily in the Houston area.
+          We focus on durable, cash-generative businesses with strong teams and consistent cash flow—primarily in the Houston area.
         </div>
 
-        <ul class="criteria-list">
-          <li>$5M+ revenue</li>
-          <li>$750K+ annual cash flow</li>
-          <li>Growing, resilient end markets</li>
-          <li>Houston-area based</li>
-          <li>Strong culture and middle management</li>
-          <li>Recurring or repeat revenue</li>
-          <li>Stable margins and consistent cash flow</li>
-        </ul>
+        <div class="criteria-buckets">
+          <div class="bucket">
+            <div class="bucket-title">Financial Profile</div>
+            <ul>
+              <li>$5M+ revenue</li>
+              <li>$750K+ annual cash flow</li>
+              <li>Stable margins and consistent cash flow</li>
+            </ul>
+          </div>
+
+          <div class="bucket">
+            <div class="bucket-title">Business Quality</div>
+            <ul>
+              <li>Recurring or repeat revenue</li>
+              <li>Growing, resilient end markets</li>
+              <li>Durable customer demand</li>
+            </ul>
+          </div>
+
+          <div class="bucket">
+            <div class="bucket-title">People & Fit</div>
+            <ul>
+              <li>Houston-area based</li>
+              <li>Strong culture and middle management</li>
+              <li>Clear path to long-term ownership</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </section>
