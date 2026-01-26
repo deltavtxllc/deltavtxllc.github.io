@@ -110,19 +110,39 @@
       justify-self:end;
     }
 
-    /* Mobile: move tagline to its own row so it's not squeezed */
     @media (max-width: 780px){
-      .topbar-inner{
-        grid-template-columns:auto auto;   /* logo | button */
-        grid-template-rows:auto auto;      /* tagline row */
-        row-gap:10px;
-      }
-      .top-tagline{
-        grid-column:1 / -1; /* full width */
-        font-size:13px;
-        max-width:none;     /* don't squeeze */
-      }
-    }
+  .topbar-inner{
+    grid-template-columns: 1fr;     /* single column stack */
+    grid-template-rows: auto auto auto;
+    justify-items: center;          /* center everything */
+    align-items: center;
+    row-gap: 10px;
+    padding: 10px 0;                /* give it breathing room */
+  }
+
+  .logo-wrap{
+    justify-self: center;
+  }
+
+  .logo-wrap img{
+    height: 92px;                   /* mobile logo size */
+  }
+
+  .top-tagline{
+    grid-column: 1;
+    text-align: center;
+    font-size: 14px;                /* NOT tiny */
+    line-height: 1.35;
+    max-width: 34ch;                /* prevents ultra-wide lines */
+    opacity: 0.92;
+  }
+
+  .topbar-inner > .btn{
+    justify-self: center;
+    width: 100%;                    /* optional: full-width CTA */
+    max-width: 260px;
+  }
+}
 
     /* ===== HERO ===== */
     .hero{
